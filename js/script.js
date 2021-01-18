@@ -1,6 +1,6 @@
 $(document).ready(function(event) {
     $('.hi__burger').click(function(event) {
-        $('.hi__burger,.menu__menu,.hi__soc,.slick-arrow').toggleClass('active');
+        $('.hi__burger,.menu__menu,.hi__soc,.slick-arrow,.hi__langeage,.slider__title').toggleClass('active');
         $('body').toggleClass('lock');
     });
 });
@@ -11,7 +11,12 @@ $(document).ready(function(event) {
 });
 $(document).ready(function(event) {
     $('.textBack').click(function(event) {
-        $('.textBack,.textBack,.hi__soc,.original').toggleClass('active');
+        $('.textFront,.textBack,.body__eng,.body__fr,.original').toggleClass('active');
+    });
+});
+$(document).ready(function(event) {
+    $('.textFront').click(function(event) {
+        $('.textFront,.textBack,.body__eng,.body__fr,.original').removeClass('active');
     });
 });
 $(document).ready(function(event) {
@@ -20,14 +25,39 @@ $(document).ready(function(event) {
     });
 
 });
+new Swiper('.slider__title',{
+    loop: true,
+    loopedSlides: 3,
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false
+    },
+    speed: 1500,
+    effect:'cube',
+    slideShadows: true,
+    shadow: true,
+    shadowOffset: 20,
+    shadowScale: 0.94,
+    thumbs: {
+        swiper: {
+            el: '.slider__title_min',
+            slidesPerView: 6,
+        }
+    }
 
-$(document).ready(function(event) {
+
+});
+
+/*$(document).ready(function(event) {
     $('.slider__title').slick({
         autoplay:true,
         arrows:false,
         slidesToShow:1,
+        adaptiveHeight:false,
+        fade:true,
+        dots:true,
     });
-});
+});*/
 
 $(document).ready(function(event) {
     $('.geo__title1').click(function(event) {
