@@ -1,6 +1,42 @@
+
+const animItems = document.querySelectorAll('._anim-items');
+
+if (animItems.length > 0) {
+    window.addEventListener('scroll',animOnScroll);
+    function animOnScroll() {
+        for (let index = 0; index <animItems.length; index++){
+            const animItem =animItems[index];
+            const animItemHeight = animItem.offsetHeight;
+            const animItemOffset = offset(animItem).top;
+            const animStart = 4;
+
+            let animItemPoint = window.innerHeight - animItemHeight / animStart;
+            if (animItemHeight > window.innerHeight) {
+                animItemPoint = window.innerHeight - window.innerHeight /animStart;
+            }
+
+            if ((pageYOffset > animItemOffset - animItemPoint) && pageYOffset < (animItemOffset + animItemHeight)) {
+                animItem.classList.add('_active');
+            } else {
+                animItem.classList.remove('_active');
+            }
+        }
+    }
+function offset(el) {
+    const rect = el.getBoundingClientRect(),
+        scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+        scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    return { top: rect.top + scrollTop, left: rect.left + screenLeft }
+    }
+    animOnScroll();
+}
+
+
+
+
 $(document).ready(function(event) {
     $('.hi__burger').click(function(event) {
-        $('.hi__burger,.menu__menu,.hi__soc,.slick-arrow,.hi__langeage,.slider__title').toggleClass('active');
+        $('.hi__burger,.menu__menu,.hi__soc,.slick-arrow,.hi__langeage,.slider__title,.slider__title_min').toggleClass('active');
         $('body').toggleClass('lock');
     });
 });
@@ -33,7 +69,11 @@ new Swiper('.slider__title',{
         disableOnInteraction: false
     },
     speed: 1500,
-    effect:'cube',
+    effect:'fade',
+
+    fadeEffect:{
+        crossFade: true
+    },
     slideShadows: true,
     shadow: true,
     shadowOffset: 20,
@@ -44,8 +84,6 @@ new Swiper('.slider__title',{
             slidesPerView: 6,
         }
     }
-
-
 });
 
 /*$(document).ready(function(event) {
